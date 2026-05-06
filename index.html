@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éléonore de Bussy — Direction Artistique & Scénographie</title>
+
+<!-- ============================================================
+  POLICE DE CARACTÈRES
+  Cormorant Garamond = titres élégants (style luxe)
+  Karla = texte courant (lisible, discret)
+  Si vous n'avez pas internet, les polices ne se chargeront pas
+  mais le site fonctionnera quand même avec des polices système
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================================================
+   VARIABLES DE COULEURS
+   Modifiez ici pour changer toute la palette du site
+============================================================ */
+:root {
+  --sable:    #E8E0D5;   /* fond clair chaud */
+  --os:       #F5F0E8;   /* fond très clair */
+  --ombre:    #6B5B4E;   /* brun moyen — textes secondaires */
+  --sienna:   #A07856;   /* accent doré-brun */
+  --charbon:  #2C2420;   /* quasi-noir chaud */
+  --creme:    #FAF7F2;   /* fond principal */
+  --noir:     #1A1410;   /* noir profond */
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--creme);
+  color: var(--charbon);
+  font-family: 'Karla', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none; /* masque le curseur système — remplacé par curseur custom */
+}
+
+/* ============================================================
+   TEXTURE GRAIN (overlay fixe sur toute la page)
+============================================================ */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1000; opacity: 0.55;
+}
+
+/* ============================================================
+   CURSEUR PERSONNALISÉ
+============================================================ */
+.curseur {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--sienna);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+.curseur.agrandi {
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 1px solid var(--sienna);
+}
+
+/* ============================================================
+   NAVIGATION FIXE EN HAUT
+============================================================ -->
+<!-- MODIFIER : changez le nom dans le HTML ligne ~320 -->
+============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 52px;
+  background: rgba(250,247,242,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(160,120,86,0.15);
+  transition: background 0.5s;
+}
+nav.defilée {
+  background: rgba(250,247,242,0.97);
+  backdrop-filter: blur(10px);
+}
+.nav-nom {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--charbon); font-weight: 300;
+}
+.nav-liens { display: flex; gap: 36px; list-style: none; }
+.nav-liens a {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ombre); text-decoration: none; transition: color 0.3s;
+}
+.nav-liens a:hover { color: var(--sienna); }
+
+/* ============================================================
+   ONGLETS PRINCIPAUX : UNIVERS / PROJETS
+   Ce sont les deux grandes sections de l'Option B
+============================================================ */
+.onglets-principaux {
+  position: fixed; top: 78px; left: 52px; z-index: 199;
+  display: flex; gap: 0;
+}
+.onglet-btn {
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  padding: 8px 20px; border: 1px solid rgba(107,91,78,0.25);
+  background: transparent; color: var(--ombre);
+  cursor: none; font-family: 'Karla', sans-serif;
+  transition: all 0.3s;
+}
+.onglet-btn:first-child { border-right: none; }
+.onglet-btn.actif {
+  background: var(--charbon); color: var(--creme);
+  border-color: var(--charbon);
+}
+.onglet-btn:hover:not(.actif) { background: var(--sable); }
+
+/* ============================================================
+   SECTIONS PRINCIPALES (Univers / Projets)
+   Chaque section est un "écran" complet
+============================================================ */
+.section-principale { display: none; }
+.section-principale.active { display: block; }
+
+/* ============================================================
+   HERO COMMUN
+============================================================ */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 55% 45%;
+  position: relative; overflow: hidden;
+}
+.hero-gauche {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 120px 52px 80px; position: relative; overflow: hidden;
+}
+.hero-gauche::after {
+  content: ''; position: absolute;
+  bottom: 0; right: 0; width: 1px; height: 55%;
+  background: linear-gradient(to bottom, transparent, var(--sienna) 40%, transparent);
+  opacity: 0.4;
+}
+.hero-sous-titre {
+  font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--sienna); margin-bottom: 36px;
+  animation: monterFade 1s ease forwards; opacity: 0; animation-delay: 0.15s;
+}
+.hero-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6.5vw, 88px);
+  font-weight: 300; line-height: 0.92; color: var(--charbon);
+  animation: monterFade 1s ease forwards; opacity: 0; animation-delay: 0.3s;
+}
+.hero-titre span { display: block; }
+.hero-titre .italique { font-style: italic; color: var(--ombre); }
+.hero-description {
+  margin-top: 36px;
+  font-size: 12.5px; line-height: 1.95; color: var(--ombre); max-width: 380px;
+  animation: monterFade 1s ease forwards; opacity: 0; animation-delay: 0.55s;
+}
+
+/* ============================================================
+   TICKER (bandeau défilant en bas du hero)
+   MODIFIER : changez les textes dans le HTML
+============================================================ */
+.hero-ticker {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 38px; background: var(--charbon);
+  display: flex; align-items: center; overflow: hidden;
+  animation: appFade 1.4s ease forwards; opacity: 0; animation-delay: 1s;
+}
+.ticker-piste {
+  display: flex; white-space: nowrap;
+  animation: ticker 22s linear infinite;
+}
+.ticker-element {
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(250,247,242,0.5); padding: 0 48px;
+  display: flex; align-items: center; gap: 48px;
+}
+.ticker-element::after { content: '·'; color: var(--sienna); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   CÔTÉ DROIT DU HERO (image)
+   MODIFIER : remplacez le background par votre image
+   Exemple : background-image: url('votre-photo.jpg');
+============================================================ */
+.hero-droite {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* --- UNIVERS hero : fond sable + œuvre plastique --- */
+.hero-univers-droite { background: var(--sable); }
+#section-univers .hero-gauche::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url('images/mains-grain.jpg');
+  background-size: cover; background-position: center;
+  opacity: 0.28; z-index: 0;
+}
+#section-univers .hero-gauche > * { position: relative; z-index: 1; }
+.hero-univers-img {
+  position: absolute; inset: 0;
+  /* === REMPLACEZ ICI : votre photo d'œuvre plastique === */
+  /* background-image: url('images/anamnese.jpg'); */
+  /* background-size: cover; background-position: center; */
+background-image: url('images/rocher.jpeg');
+background-size: cover;
+background-position: center;
+  animation: appFade 1.6s ease forwards; opacity: 0; animation-delay: 0.7s;
+}
+.hero-univers-legende {
+  position: absolute; bottom: 52px; left: 36px; right: 36px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ombre); line-height: 1.9;
+}
+.hero-univers-legende strong {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 15px; font-weight: 300;
+  letter-spacing: 0.05em; margin-bottom: 4px; color: var(--charbon);
+}
+
+/* --- PROJETS hero : fond sombre + photo de chantier/scéno --- */
+.hero-projets-droite { background: var(--noir); }
+.hero-projets-img {
+  position: absolute; inset: 0;
+  /* === REMPLACEZ ICI : votre photo de projet professionnel === */
+  /* background-image: url('images/kandinsky-scene.jpg'); */
+  /* background-size: cover; background-position: center; */
+  background: linear-gradient(145deg, #1A1410 0%, #2C2018 40%, #4A3020 70%, #1A1008 100%);
+  animation: appFade 1.6s ease forwards; opacity: 0; animation-delay: 0.7s;
+}
+.hero-projets-legende {
+  position: absolute; bottom: 52px; left: 36px; right: 36px;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(250,247,242,0.35); line-height: 1.9;
+}
+.hero-projets-legende strong {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 15px; font-weight: 300;
+  letter-spacing: 0.05em; margin-bottom: 4px; color: rgba(250,247,242,0.7);
+}
+
+/* ============================================================
+   PHRASE D'INTRODUCTION (après le hero)
+============================================================ */
+.intro {
+  padding: 90px 52px 70px;
+  display: grid; grid-template-columns: 200px 1fr; gap: 80px; align-items: start;
+}
+.intro-etiquette {
+  font-size: 9px; letter-spacing: 0.4em; color: var(--sienna);
+  text-transform: uppercase; padding-top: 12px;
+}
+.intro-texte {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 2.8vw, 34px); font-weight: 300;
+  line-height: 1.55; color: var(--charbon);
+}
+.intro-texte em { font-style: italic; color: var(--ombre); }
+
+/* ============================================================
+   GRILLE DE TRAVAUX
+============================================================ */
+.travaux { padding: 0 52px 80px; }
+
+.travaux-entete {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 48px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(107,91,78,0.2);
+}
+.travaux-label { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sienna); }
+
+/* Grille asymétrique 12 colonnes */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+}
+
+/* ============================================================
+   CARTES DE PROJETS
+   MODIFIER : remplacez les backgrounds par vos images
+============================================================ */
+.carte {
+  position: relative; overflow: hidden; cursor: none;
+  background: var(--sable);
+}
+
+/* Positions dans la grille — vous pouvez les réorganiser */
+.carte:nth-child(1) { grid-column: 1 / 8; grid-row: 1; aspect-ratio: 16/10; }
+.carte:nth-child(2) { grid-column: 8 / 13; grid-row: 1; aspect-ratio: 4/5; }
+.carte:nth-child(3) { grid-column: 1 / 5; grid-row: 2; aspect-ratio: 4/5; }
+.carte:nth-child(4) { grid-column: 5 / 9; grid-row: 2; aspect-ratio: 4/5; }
+.carte:nth-child(5) { grid-column: 9 / 13; grid-row: 2; aspect-ratio: 4/5; }
+
+.carte-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.carte:hover .carte-bg { transform: scale(1.04); }
+
+/* Dégradé sombre en bas pour lisibilité du texte */
+.carte-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,14,8,0.8) 0%, rgba(20,14,8,0.1) 50%, transparent 100%);
+}
+
+.carte-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 28px;
+  transform: translateY(8px);
+  transition: transform 0.4s ease;
+}
+.carte:hover .carte-info { transform: translateY(0); }
+
+.carte-annee {
+  font-size: 9px; letter-spacing: 0.3em; color: rgba(250,247,242,0.45);
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.carte-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.2vw, 28px); font-weight: 300; font-style: italic;
+  color: rgba(250,247,242,0.9); line-height: 1;
+}
+.carte-type {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sienna); margin-top: 6px; opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.4s ease 0.1s;
+}
+.carte:hover .carte-type { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   BACKGROUNDS DES CARTES — UNIVERS (travail personnel)
+   MODIFIER : remplacez chaque background par votre image
+   Exemple :
+   background: linear-gradient(160deg, #F0EDE8 0%, #C8C0B8 30%, #787068 60%, #201810 100%);
+============================================================ */
+.bg-anamnese {
+background-image: url('images/anamnese.jpeg')
+}
+.bg-narthex {
+  /* === REMPLACEZ : photo Narthex (impression pigmentaire) === */
+background-image: url('images/narthex.jpeg');
+background-size: cover;
+background-position: center;
+}
+.bg-theatron {
+  background-image: url('images/Kan-impression.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.bg-inframince {
+  /* === REMPLACEZ : photo Inframince (bois de chêne doré) === */
+background-image: url('images/inframince.jpeg');
+background-size: cover;
+background-position: center;
+}
+.bg-exposition-dnsep {
+  /* === REMPLACEZ : vue de l'exposition DNSEP === */
+background-image: url('images/peaudecorce.jpeg');
+background-size: cover;
+background-position: center;
+}
+
+/* ============================================================
+   BACKGROUNDS DES CARTES — PROJETS (travail pour autrui)
+============================================================ */
+.bg-kandinsky {
+  /* === REMPLACEZ : photo Kandinsky une vie bariolée === */
+  background: linear-gradient(145deg, #2A1E16 0%, #4A3020 35%, #3A2818 70%, #1A1008 100%);
+}
+.bg-etttore {
+  /* === REMPLACEZ : photo projet Etttore Paris === */
+  background: linear-gradient(150deg, #E0D8CC 0%, #C8B89A 40%, #A89070 70%, #786050 100%);
+}
+.bg-expo-kandinsky {
+  /* === REMPLACEZ : photo expo Kandinsky Strasbourg === */
+  background: linear-gradient(145deg, #3A3020 0%, #6A5840 40%, #8A7858 70%, #2A2018 100%);
+}
+.bg-arronax {
+  /* === REMPLACEZ : photo ART'ONAX exposition === */
+  background: linear-gradient(140deg, #282820 0%, #484840 40%, #686858 70%, #181810 100%);
+}
+.bg-architecte {
+  /* === REMPLACEZ : photo assistanat architecte === */
+  background: linear-gradient(155deg, #E8E4DC 0%, #C8C0B4 35%, #989088 65%, #282018 100%);
+}
+
+/* ============================================================
+   LISTE DES DISCIPLINES
+============================================================ */
+.disciplines { padding: 90px 52px; }
+.disc-en-tete {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 56px;
+}
+.disc-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4.5vw, 60px); font-weight: 300; color: var(--charbon);
+}
+.disc-titre em { font-style: italic; color: var(--ombre); }
+
+.disc-item {
+  border-top: 1px solid rgba(107,91,78,0.2);
+  display: grid; grid-template-columns: 52px 1fr 1fr auto;
+  gap: 40px; align-items: center; padding: 32px 0;
+  cursor: none; position: relative; overflow: hidden;
+  transition: padding-left 0.4s ease;
+}
+.disc-item:last-child { border-bottom: 1px solid rgba(107,91,78,0.2); }
+.disc-item::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0; background: rgba(160,120,86,0.07);
+  transition: width 0.5s ease; z-index: -1;
+}
+.disc-item:hover::before { width: 100%; }
+.disc-item:hover { padding-left: 8px; }
+
+.disc-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 11px;
+  font-style: italic; color: var(--sienna); opacity: 0.5;
+}
+.disc-nom {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 3.2vw, 42px); font-weight: 300; color: var(--charbon);
+  transition: color 0.3s;
+}
+.disc-item:hover .disc-nom { color: var(--ombre); }
+.disc-detail {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ombre); opacity: 0; transform: translateX(-8px);
+  transition: all 0.4s ease 0.08s;
+}
+.disc-item:hover .disc-detail { opacity: 0.65; transform: translateX(0); }
+.disc-fleche { color: var(--sienna); font-size: 18px; opacity: 0; transition: all 0.3s; }
+.disc-item:hover .disc-fleche { opacity: 0.7; }
+
+/* ============================================================
+   SECTION À PROPOS
+============================================================ */
+.apropos {
+  padding: 90px 52px;
+  display: grid; grid-template-columns: 5fr 4fr; gap: 80px;
+}
+.apropos-tag {
+  font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--sienna); margin-bottom: 32px;
+}
+.apropos-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4.5vw, 60px); font-weight: 300; line-height: 1.05;
+  color: var(--charbon); margin-bottom: 40px;
+}
+.apropos-titre em { font-style: italic; color: var(--ombre); }
+.apropos-corps { font-size: 13.5px; line-height: 2.1; color: var(--ombre); }
+.apropos-corps p + p { margin-top: 22px; }
+.apropos-cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--charbon); margin-top: 40px;
+  padding-bottom: 3px; border-bottom: 1px solid var(--sienna);
+  cursor: none; text-decoration: none;
+}
+
+.fiches { display: flex; flex-direction: column; gap: 0; margin-top: 60px; }
+.fiche {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(107,91,78,0.18);
+}
+.fiche:first-child { border-top: 1px solid rgba(107,91,78,0.18); }
+.fiche-label {
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--sienna); margin-bottom: 6px;
+}
+.fiche-valeur {
+  font-family: 'Cormorant Garamond', serif; font-size: 17px;
+  font-weight: 300; color: var(--charbon);
+}
+
+/* ============================================================
+   SECTION MÉMOIRE (fond sombre)
+============================================================ */
+.memoire {
+  background: var(--charbon); padding: 80px 52px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.memoire-pre {
+  font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--sienna); margin-bottom: 24px;
+}
+.memoire-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6vw, 80px); font-weight: 300; font-style: italic;
+  color: var(--os); line-height: 0.95;
+}
+.memoire-annee {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: rgba(250,247,242,0.3); margin-top: 16px;
+}
+.memoire-texte {
+  font-size: 13px; line-height: 2; color: rgba(250,247,242,0.55);
+}
+.memoire-refs {
+  margin-top: 28px; font-size: 11px; font-style: italic;
+  color: rgba(250,247,242,0.3); letter-spacing: 0.08em; line-height: 1.9;
+}
+
+/* ============================================================
+   PIED DE PAGE
+   MODIFIER : vos coordonnées
+============================================================ */
+footer {
+  padding: 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(107,91,78,0.18);
+}
+.footer-nom {
+  font-family: 'Cormorant Garamond', serif; font-size: 12px;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--ombre);
+}
+.footer-liens { display: flex; gap: 32px; }
+.footer-liens a {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sienna); text-decoration: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes monterFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes appFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Révélation au scroll */
+.reveler {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveler.visible { opacity: 1; transform: translateY(0); }
+.delai-1 { transition-delay: 0.1s; }
+.delai-2 { transition-delay: 0.2s; }
+.delai-3 { transition-delay: 0.32s; }
+
+/* Ligne décorative */
+.ligne-deco {
+  width: 1px; height: 70px;
+  background: linear-gradient(to bottom, transparent, var(--sienna), transparent);
+  margin: 0 auto; opacity: 0.45;
+}
+.centre { text-align: center; padding: 16px 0; }
+
+/* ============================================================
+   SÉPARATEUR DE SECTION
+============================================================ */
+.separateur {
+  height: 1px; background: rgba(107,91,78,0.18);
+  margin: 0 52px;
+}
+
+/* Fond sable pour certaines sections */
+.fond-sable { background: var(--sable); }
+
+</style>
+</head>
+<body>
+
+<!-- Curseur personnalisé -->
+<div class="curseur" id="curseur"></div>
+
+<!-- ============================================================
+   NAVIGATION
+   MODIFIER : votre nom ici
+============================================================ -->
+<nav id="nav">
+  <span class="nav-nom">Éléonore de Bussy</span>
+  <ul class="nav-liens">
+    <li><a href="#travaux">Travaux</a></li>
+    <li><a href="#disciplines">Disciplines</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+   ONGLETS UNIVERS / PROJETS
+   Ce sont les deux grandes entrées du portfolio (Option B)
+============================================================ -->
+<div class="onglets-principaux">
+  <button class="onglet-btn actif" onclick="changerOnglet('univers')">Univers</button>
+  <button class="onglet-btn" onclick="changerOnglet('projets')">Projets</button>
+</div>
+
+
+<!-- ================================================================
+  ██╗   ██╗███╗   ██╗██╗██╗   ██╗███████╗██████╗ ███████╗
+  ██║   ██║████╗  ██║██║██║   ██║██╔════╝██╔══██╗██╔════╝
+  ██║   ██║██╔██╗ ██║██║██║   ██║█████╗  ██████╔╝███████╗
+  ██║   ██║██║╚██╗██║██║╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║
+  ╚██████╔╝██║ ╚████║██║ ╚████╔╝ ███████╗██║  ██║███████║
+   ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝
+  Travail plastique personnel — votre voix singulière
+================================================================ -->
+<div id="section-univers" class="section-principale active">
+
+  <!-- HERO UNIVERS -->
+  <section class="hero">
+    <div class="hero-gauche" style="background: var(--sable);">
+      <p class="hero-sous-titre">Travail plastique & artistique</p>
+      <h1 class="hero-titre">
+        <span>Avoir</span>
+        <span class="italique">lieu</span>
+      </h1>
+      <!-- MODIFIER : votre phrase de présentation -->
+      <p class="hero-description">
+        Espace, matière, mémoire — là où quelque chose advient.
+        Dessin au fusain, empreinte, photographie, sculpture :
+        une pratique qui inscrit l'expérience sensible dans la matière.
+      </p>
+
+      <!-- Ticker défilant — MODIFIER les textes -->
+      <div class="hero-ticker">
+        <div class="ticker-piste">
+          <span class="ticker-element">Dessin au fusain</span>
+          <span class="ticker-element">Empreinte & frottage</span>
+          <span class="ticker-element">Photographie</span>
+          <span class="ticker-element">Sculpture béton fibré</span>
+          <span class="ticker-element">Installation</span>
+          <span class="ticker-element">Mémoire Avoir lieu</span>
+          <!-- Répétition pour le défilement continu -->
+          <span class="ticker-element">Dessin au fusain</span>
+          <span class="ticker-element">Empreinte & frottage</span>
+          <span class="ticker-element">Photographie</span>
+          <span class="ticker-element">Sculpture béton fibré</span>
+          <span class="ticker-element">Installation</span>
+          <span class="ticker-element">Mémoire Avoir lieu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-droite hero-univers-droite">
+      <!-- MODIFIER : remplacez par votre image -->
+      <!-- <img src="images/anamnese.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <img src="images/rocher.jpeg" style="width:100%;height:100%;object-fit:cover;">
+      <div class="hero-univers-legende">
+        <!-- MODIFIER : titre et description de l'œuvre en image -->
+        <strong>Rocher</strong>
+        Fusain sec sur toile de lin · 144×177 cm<br>
+        Galerie Sabrina Lucas, Nantes, 2022
+      </div>
+    </div>
+  </section>
+
+  <!-- PHRASE D'INTRODUCTION UNIVERS -->
+  <div class="intro reveler" id="travaux">
+    <div class="intro-etiquette">Démarche</div>
+    <p class="intro-texte">
+      Je travaille les <em>seuils</em> — espaces d'entre-deux où quelque chose advient.
+      Du fusain sur toile de lin au béton fibré, chaque geste inscrit une mémoire
+      dans la matière et transforme l'expérience intime en œuvre partagée.
+    </p>
+  </div>
+
+  <!-- GRILLE TRAVAUX PERSONNELS -->
+  <div class="travaux reveler">
+    <div class="travaux-entete">
+      <span class="travaux-label">Œuvres & travail plastique</span>
+    </div>
+
+    <div class="grille">
+
+      <!-- CARTE 1 — grande carte gauche -->
+      <!-- MODIFIER : remplacez .bg-anamnese par background-image: url('votre-image.jpg') -->
+      <div class="carte">
+        <div class="carte-bg bg-anamnese"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Anamnese</div>
+          <!-- MODIFIER : description du projet -->
+          <div class="carte-type">Fusain sec sur toile de lin · 144×177 cm · Galerie Sabrina Lucas</div>
+        </div>
+      </div>
+
+      <!-- CARTE 2 -->
+      <div class="carte">
+        <div class="carte-bg bg-narthex.jpeg"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Narthex</div>
+          <div class="carte-type">Impression pigmentaire · 160×240 cm · Open School ESBANM</div>
+        </div>
+      </div>
+
+      <!-- CARTE 3 -->
+      <div class="carte">
+        <div class="carte-bg bg-theatron"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Theatron</div>
+          <div class="carte-type">Sculptures béton fibré · Commande · Laboratoire Arronax</div>
+        </div>
+      </div>
+
+      <!-- CARTE 4 -->
+      <div class="carte">
+        <div class="carte-bg bg-inframince"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Inframince</div>
+          <div class="carte-type">Photographie · Sculpture bois de chêne · Peinture dorée</div>
+        </div>
+      </div>
+
+      <!-- CARTE 5 -->
+      <div class="carte">
+        <div class="carte-bg bg-exposition-dnsep"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Peau d'écorce</div>
+          <div class="carte-type">Peau d&rsquo;écorce</div>
+        </div>
+      </div>
+
+    </div><!-- fin .grille -->
+  </div><!-- fin .travaux -->
+
+  <div class="centre reveler"><div class="ligne-deco"></div></div>
+
+  <!-- SECTION MÉMOIRE -->
+  <section class="memoire reveler">
+    <div>
+      <p class="memoire-pre">Mémoire de master · DNSEP 2022</p>
+      <h3 class="memoire-titre">Avoir<br>lieu</h3>
+      <p class="memoire-annee">Dir. Xavier Vert · Jury Fanny Drugeon</p>
+    </div>
+    <div>
+      <p class="memoire-texte">
+        Une recherche-création explorant la relation entre espace, matière et mémoire.
+        Seuils, empreintes, gestes de conservation — comment l'artiste donne forme
+        à une expérience sensible du lieu. Narthex, aître, theatron : les espaces
+        d'entre-deux où quelque chose advient.
+      </p>
+      <p class="memoire-refs">Bachelard · Didi-Huberman · Eliade · Ingold</p>
+    </div>
+  </section>
+
+  <!-- À PROPOS (affiché dans Univers) -->
+  <section class="apropos" id="apropos">
+    <div class="reveler">
+      <p class="apropos-tag">À propos</p>
+      <h2 class="apropos-titre">Habiter<br>le monde,<br><em>faire œuvre</em></h2>
+      <div class="apropos-corps">
+        <!-- MODIFIER : votre biographie -->
+        <p>Diplômée du DNSEP des Beaux-Arts de Nantes (mention qualité des réalisations),
+        je construis des univers où l'espace, le trait et la lumière portent une mémoire.
+        Formée au DNA design d'objet et espace à l'EESAB Rennes, j'ai également
+        un certificat d'initiation au DPEA scénographie.</p>
+        <p>Mon travail explore les seuils : espaces d'entre-deux où la matière devient
+        mémoire, où l'expérience intime devient œuvre partagée.
+        Publié dans la Revue Zérodeux, présenté dans le cadre du Voyage à Nantes 2022.</p>
+      </div>
+      <!-- MODIFIER : lien vers votre CV -->
+      <a class="apropos-cta" href="cv-eleonore-de-bussy.pdf" target="_blank">Télécharger le CV →</a>
+    </div>
+    <div class="reveler delai-1">
+      <div class="fiches">
+        <div class="fiche">
+          <div class="fiche-label">Formation</div>
+          <div class="fiche-valeur">DNSEP · Beaux-Arts de Nantes, 2022</div>
+        </div>
+        <div class="fiche">
+          <div class="fiche-label">Formation complémentaire</div>
+          <div class="fiche-valeur">DNA Design · EESAB Rennes</div>
+        </div>
+        <div class="fiche">
+          <div class="fiche-label">Certification</div>
+          <div class="fiche-valeur">DPEA Scénographie · Initiation</div>
+        </div>
+        <div class="fiche">
+          <div class="fiche-label">Publications</div>
+          <div class="fiche-valeur">Revue Zérodeux · Voyage à Nantes 2022</div>
+        </div>
+        <div class="fiche">
+          <div class="fiche-label">Outils</div>
+          <div class="fiche-valeur">SketchUp · Suite Adobe · Fujifilm X-T10</div>
+        </div>
+        <!-- MODIFIER : votre Instagram -->
+        <div class="fiche">
+          <div class="fiche-label">Instagram</div>
+          <div class="fiche-valeur">@eleonoredebussydandolo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIED DE PAGE -->
+  <footer id="contact">
+    <!-- MODIFIER : vos coordonnées -->
+    <span class="footer-nom">Éléonore de Bussy</span>
+    <div class="footer-liens">
+      <a href="mailto:eleonoredebussy@gmail.com">eleonoredebussy@gmail.com</a>
+      <a href="tel:+33681376108">+33 6 81 37 61 08</a>
+    </div>
+  </footer>
+
+</div><!-- fin #section-univers -->
+
+
+<!-- ================================================================
+  ██████╗ ██████╗  ██████╗      ██╗███████╗████████╗███████╗
+  ██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝╚══██╔══╝██╔════╝
+  ██████╔╝██████╔╝██║   ██║     ██║█████╗     ██║   ███████╗
+  ██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝     ██║   ╚════██║
+  ██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗   ██║   ███████║
+  ╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝   ╚═╝   ╚══════╝
+  Travail réalisé pour des clients / commanditaires
+================================================================ -->
+<div id="section-projets" class="section-principale">
+
+  <!-- HERO PROJETS -->
+  <section class="hero">
+    <div class="hero-gauche" style="background: var(--charbon);">
+      <p class="hero-sous-titre" style="color: var(--sienna);">Scénographie · Décoration · Direction artistique</p>
+      <h1 class="hero-titre" style="color: var(--os);">
+        <span>Au service</span>
+        <span class="italique" style="color: rgba(250,247,242,0.6);">d'une vision</span>
+      </h1>
+      <!-- MODIFIER : votre phrase sur le travail pour autrui -->
+      <p class="hero-description" style="color: rgba(250,247,242,0.55);">
+        Scénographie de théâtre, décoration d'intérieur, conception d'exposition :
+        mettre un univers sensible au service d'un projet, d'une maison, d'un artiste.
+      </p>
+
+      <!-- Ticker projets -->
+      <div class="hero-ticker">
+        <div class="ticker-piste">
+          <span class="ticker-element">Scénographie de théâtre</span>
+          <span class="ticker-element">Décoration d'intérieur</span>
+          <span class="ticker-element">Conception d'exposition</span>
+          <span class="ticker-element">Plans 3D & maquettes</span>
+          <span class="ticker-element">Sourcing & artisans</span>
+          <span class="ticker-element">Direction artistique</span>
+          <span class="ticker-element">Scénographie de théâtre</span>
+          <span class="ticker-element">Décoration d'intérieur</span>
+          <span class="ticker-element">Conception d'exposition</span>
+          <span class="ticker-element">Plans 3D & maquettes</span>
+          <span class="ticker-element">Sourcing & artisans</span>
+          <span class="ticker-element">Direction artistique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-droite hero-projets-droite">
+      <!-- MODIFIER : remplacez par votre image de projet -->
+      <!-- <img src="images/kandinsky-scene.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="hero-projets-img"></div>
+      <div class="hero-projets-legende">
+        <!-- MODIFIER : titre et description -->
+        <strong>Kandinsky, une vie bariolée</strong>
+        Scénographie · Décor · Costumes<br>
+        Mise en scène Olivier Achard, 2023
+      </div>
+    </div>
+  </section>
+
+  <!-- PHRASE D'INTRODUCTION PROJETS -->
+  <div class="intro reveler">
+    <div class="intro-etiquette">Approche</div>
+    <p class="intro-texte">
+      Chaque projet est une occasion de mettre une <em>sensibilité singulière</em>
+      au service d'une vision extérieure — avec rigueur technique, écoute
+      et capacité à habiter l'univers de l'autre.
+    </p>
+  </div>
+
+  <!-- GRILLE PROJETS PROFESSIONNELS -->
+  <div class="travaux reveler">
+    <div class="travaux-entete">
+      <span class="travaux-label">Projets professionnels</span>
+    </div>
+
+    <div class="grille">
+
+      <!-- CARTE 1 — grande -->
+      <div class="carte">
+        <div class="carte-bg bg-kandinsky"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2023</div>
+          <div class="carte-titre">Kandinsky, une vie bariolée</div>
+          <div class="carte-type">Scénographie · Décor · Costumes · Photographie</div>
+        </div>
+      </div>
+
+      <!-- CARTE 2 -->
+      <div class="carte">
+        <div class="carte-bg bg-etttore"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2023</div>
+          <div class="carte-titre">Etttore, Paris</div>
+          <div class="carte-type">Décoration d'intérieur · Plans 3D · Suivi chantier</div>
+        </div>
+      </div>
+
+      <!-- CARTE 3 -->
+      <div class="carte">
+        <div class="carte-bg bg-expo-kandinsky"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2023</div>
+          <div class="carte-titre">Kandinsky & l'inspiration</div>
+          <div class="carte-type">Scénographie d'exposition · Palais épiscopal, Strasbourg</div>
+        </div>
+      </div>
+
+      <!-- CARTE 4 -->
+      <div class="carte">
+        <div class="carte-bg bg-arronax"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">ART'ONAX</div>
+          <div class="carte-type">Commande sculpture · Laboratoire Arronax · Saint-Herblain</div>
+        </div>
+      </div>
+
+      <!-- CARTE 5 -->
+      <div class="carte">
+        <div class="carte-bg bg-architecte"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">Assistanat · Art & Architecture</div>
+          <div class="carte-type">Architecte d'intérieur V. Lecomte · Artiste J. Minchin, Poush</div>
+        </div>
+      </div>
+
+    </div><!-- fin .grille -->
+  </div><!-- fin .travaux -->
+
+  <div class="centre reveler"><div class="ligne-deco"></div></div>
+
+  <!-- DISCIPLINES DANS PROJETS -->
+  <section class="disciplines fond-sable reveler" id="disciplines">
+    <div class="disc-en-tete">
+      <h2 class="disc-titre">Savoir-<em>faire</em></h2>
+    </div>
+    <div>
+      <div class="disc-item">
+        <span class="disc-num">01</span>
+        <span class="disc-nom">Scénographie</span>
+        <span class="disc-detail">Théâtre · Exposition · Installation</span>
+        <span class="disc-fleche">→</span>
+      </div>
+      <div class="disc-item">
+        <span class="disc-num">02</span>
+        <span class="disc-nom">Décoration d'intérieur</span>
+        <span class="disc-detail">Plans 3D · Sourcing · Suivi de chantier</span>
+        <span class="disc-fleche">→</span>
+      </div>
+      <div class="disc-item">
+        <span class="disc-num">03</span>
+        <span class="disc-nom">Direction artistique</span>
+        <span class="disc-detail">Moodboards · Note d'intention · Identité visuelle</span>
+        <span class="disc-fleche">→</span>
+      </div>
+      <div class="disc-item">
+        <span class="disc-num">04</span>
+        <span class="disc-nom">Photographie</span>
+        <span class="disc-detail">Captation · Éditorial · Fujifilm X-T10</span>
+        <span class="disc-fleche">→</span>
+      </div>
+      <div class="disc-item">
+        <span class="disc-num">05</span>
+        <span class="disc-nom">Dessin & volume</span>
+        <span class="disc-detail">Fusain · Sculpture · Plans techniques</span>
+        <span class="disc-fleche">→</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIED DE PAGE -->
+  <footer id="contact">
+    <span class="footer-nom">Éléonore de Bussy</span>
+    <div class="footer-liens">
+      <a href="mailto:eleonoredebussy@gmail.com">eleonoredebussy@gmail.com</a>
+      <a href="tel:+33681376108">+33 6 81 37 61 08</a>
+    </div>
+  </footer>
+
+</div><!-- fin #section-projets -->
+
+
+<!-- ============================================================
+   JAVASCRIPT
+   Tout le comportement interactif du site
+============================================================ -->
+<script>
+
+// -----------------------------------------------------------
+// CURSEUR PERSONNALISÉ
+// -----------------------------------------------------------
+const curseur = document.getElementById('curseur');
+document.addEventListener('mousemove', e => {
+  curseur.style.left = e.clientX + 'px';
+  curseur.style.top  = e.clientY + 'px';
+});
+// Agrandit le curseur sur les éléments cliquables
+document.querySelectorAll('a, button, .carte, .disc-item').forEach(el => {
+  el.addEventListener('mouseenter', () => curseur.classList.add('agrandi'));
+  el.addEventListener('mouseleave', () => curseur.classList.remove('agrandi'));
+});
+
+// -----------------------------------------------------------
+// NAVIGATION : fond au défilement
+// -----------------------------------------------------------
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('defilée', window.scrollY > 60);
+});
+
+// -----------------------------------------------------------
+// CHANGEMENT D'ONGLET (Univers / Projets)
+// -----------------------------------------------------------
+function changerOnglet(onglet) {
+  // Masquer toutes les sections
+  document.querySelectorAll('.section-principale').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.onglet-btn').forEach(b => b.classList.remove('actif'));
+
+  // Afficher la bonne section
+  document.getElementById('section-' + onglet).classList.add('active');
+
+  // Activer le bon bouton
+  event.target.classList.add('actif');
+
+  // Remonter en haut
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Relancer les animations de révélation
+  setTimeout(() => {
+    document.querySelectorAll('.reveler').forEach(el => {
+      el.classList.remove('visible');
+      observateur.observe(el);
+    });
+  }, 100);
+}
+
+// -----------------------------------------------------------
+// RÉVÉLATION AU DÉFILEMENT (apparition des sections)
+// -----------------------------------------------------------
+const observateur = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveler').forEach(r => observateur.observe(r));
+
+// -----------------------------------------------------------
+// EFFET SURVOL GRILLE : atténue les autres cartes
+// -----------------------------------------------------------
+document.querySelectorAll('.carte').forEach(carte => {
+  carte.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.carte').forEach(c => {
+      c.style.filter     = c === carte ? 'none' : 'brightness(0.6)';
+      c.style.transition = 'filter 0.4s';
+    });
+  });
+  carte.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.carte').forEach(c => c.style.filter = 'none');
+  });
+});
+
+</script>
+</body>
+</html>
