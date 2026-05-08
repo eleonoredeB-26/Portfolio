@@ -784,7 +784,7 @@ footer {
     <div class="hero-droite hero-univers-droite">
       <!-- MODIFIER : remplacez par votre image -->
       <!-- <img src="images/anamnese.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
-      <img src="images/mains.jpeg" style="width:100%;height:100%;object-fit:contain;background:var(--sable);">
+      <img src="images/rocher.jpeg" style="width:100%;height:100%;object-fit:contain;background:var(--sable);">
       <div class="hero-univers-legende">
         <!-- MODIFIER : titre et description de l'œuvre en image -->
         <strong>Rocher</strong>
@@ -1226,9 +1226,25 @@ footer {
 </div><!-- fin #section-thematiques -->
 
 
+<!-- GALERIE CHAPITRES -->
+<div id="galerie">
+  <button id="galerie-fermer">✕</button>
+  <button id="galerie-precedent">‹</button>
+  <button id="galerie-suivant">›</button>
+  <img id="galerie-img" src="" alt="">
+  <div id="galerie-bas">
+    <span id="galerie-titre"></span>
+    <span id="galerie-compteur"></span>
+  </div>
+</div>
+
+<!-- VISIONNEUSE CARTES -->
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <!-- ============================================================
    JAVASCRIPT
-   Tout le comportement interactif du site
 ============================================================ -->
 <script>
 
@@ -1368,23 +1384,6 @@ document.addEventListener('keydown', e => {
 });
 
 </script>
-
-<!-- GALERIE CHAPITRES -->
-<div id="galerie">
-  <button id="galerie-fermer">✕</button>
-  <button id="galerie-precedent">‹</button>
-  <button id="galerie-suivant">›</button>
-  <img id="galerie-img" src="" alt="">
-  <div id="galerie-bas">
-    <span id="galerie-titre"></span>
-    <span id="galerie-compteur"></span>
-  </div>
-</div>
-
-<!-- VISIONNEUSE -->
-<div id="lightbox">
-  <img id="lightbox-img" src="" alt="">
-</div>
 
 <style>
 #galerie {
