@@ -205,13 +205,6 @@ nav.defilée {
 
 /* --- UNIVERS hero : fond sable + œuvre plastique --- */
 .hero-univers-droite { background: var(--sable); }
-#section-univers .hero-gauche::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: url('images/mains-grain.jpg');
-  background-size: cover; background-position: center;
-  opacity: 0.28; z-index: 0;
-}
-#section-univers .hero-gauche > * { position: relative; z-index: 1; }
 .hero-univers-img {
   position: absolute; inset: 0;
   /* === REMPLACEZ ICI : votre photo d'œuvre plastique === */
@@ -361,7 +354,7 @@ background-size: cover;
 background-position: center;
 }
 .bg-theatron {
-  background-image: url('images/Kan-impression.jpg');
+  background-image: url('images/theatron.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -382,8 +375,8 @@ background-position: center;
    BACKGROUNDS DES CARTES — PROJETS (travail pour autrui)
 ============================================================ */
 .bg-kandinsky {
-  /* === REMPLACEZ : photo Kandinsky une vie bariolée === */
-  background: linear-gradient(145deg, #2A1E16 0%, #4A3020 35%, #3A2818 70%, #1A1008 100%);
+  background-image: url('images/Kan-impression.jpg');
+  background-size: cover; background-position: center;
 }
 .bg-etttore {
   /* === REMPLACEZ : photo projet Etttore Paris === */
@@ -498,7 +491,11 @@ background-position: center;
 ============================================================ */
 .memoire {
   background: var(--charbon); padding: 80px 52px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  display: grid; grid-template-columns: 260px 1fr 1fr; gap: 80px; align-items: center;
+}
+.memoire-couverture {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
 }
 .memoire-pre {
   font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
@@ -519,6 +516,49 @@ background-position: center;
 .memoire-refs {
   margin-top: 28px; font-size: 11px; font-style: italic;
   color: rgba(250,247,242,0.3); letter-spacing: 0.08em; line-height: 1.9;
+}
+
+/* ============================================================
+   SECTION THÉMATIQUES
+============================================================ */
+.thematiques-intro {
+  padding: 100px 52px 60px;
+  border-bottom: 1px solid rgba(107,91,78,0.15);
+}
+.thematiques-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 72px); font-weight: 300;
+  color: var(--charbon); line-height: 1; margin: 16px 0 20px;
+}
+.thematiques-description {
+  font-size: 13px; color: var(--ombre); max-width: 500px; line-height: 1.9;
+}
+.thematiques-grille {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0; padding: 0 0 80px;
+}
+.thematique-carte {
+  padding: 60px 52px; border-right: 1px solid rgba(107,91,78,0.12);
+  border-bottom: 1px solid rgba(107,91,78,0.12);
+}
+.thematique-img {
+  width: 100%; height: 220px; object-fit: cover; margin-bottom: 36px;
+}
+.thematique-numero {
+  font-size: 10px; letter-spacing: 0.4em; color: var(--sienna);
+  margin-bottom: 24px; font-weight: 300;
+}
+.thematique-nom {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300; font-style: italic;
+  color: var(--charbon); margin-bottom: 24px; line-height: 1;
+}
+.thematique-texte {
+  font-size: 13px; line-height: 2; color: var(--ombre); margin-bottom: 28px;
+}
+.thematique-refs {
+  font-size: 10px; letter-spacing: 0.2em; color: var(--sienna);
+  text-transform: uppercase; font-style: italic;
 }
 
 /* ============================================================
@@ -609,6 +649,7 @@ footer {
 <div class="onglets-principaux">
   <button class="onglet-btn actif" onclick="changerOnglet('univers')">Univers</button>
   <button class="onglet-btn" onclick="changerOnglet('projets')">Projets</button>
+  <button class="onglet-btn" onclick="changerOnglet('thematiques')">Thématiques</button>
 </div>
 
 
@@ -704,7 +745,7 @@ footer {
 
       <!-- CARTE 2 -->
       <div class="carte">
-        <div class="carte-bg bg-narthex.jpeg"></div>
+        <div class="carte-bg bg-narthex"></div>
         <div class="carte-overlay"></div>
         <div class="carte-info">
           <div class="carte-annee">2022</div>
@@ -753,6 +794,7 @@ footer {
 
   <!-- SECTION MÉMOIRE -->
   <section class="memoire reveler">
+    <img src="images/mains-grain.jpg" class="memoire-couverture" alt="Couverture mémoire Avoir lieu">
     <div>
       <p class="memoire-pre">Mémoire de master · DNSEP 2022</p>
       <h3 class="memoire-titre">Avoir<br>lieu</h3>
@@ -1017,6 +1059,75 @@ footer {
 </div><!-- fin #section-projets -->
 
 
+<!-- ================================================================
+   THÉMATIQUES
+================================================================ -->
+<div id="section-thematiques" class="section-principale">
+
+  <div class="thematiques-intro reveler">
+    <p class="hero-sous-titre">Recherches intellectuelles</p>
+    <h2 class="thematiques-titre">Thématiques</h2>
+    <p class="thematiques-description">
+      Des fils conducteurs qui traversent la pratique — notions, espaces mentaux, questions ouvertes.
+    </p>
+  </div>
+
+  <div class="thematiques-grille">
+
+    <!-- THÉMATIQUE 1 -->
+    <article class="thematique-carte reveler">
+      <img src="images/dome.jpeg" class="thematique-img" alt="L'abri — Dôme">
+      <div class="thematique-numero">01</div>
+      <h3 class="thematique-nom">L'abri</h3>
+      <p class="thematique-texte">
+        Ce que signifie se protéger, se retirer, habiter un espace resserré.
+        L'abri comme geste primitif — avant l'architecture, avant la forme,
+        il y a la nécessité d'un dedans.
+      </p>
+      <div class="thematique-refs">Bachelard · Sloterdijk · Ingold</div>
+    </article>
+
+    <!-- THÉMATIQUE 2 — à compléter -->
+    <article class="thematique-carte reveler delai-1">
+      <div class="thematique-numero">02</div>
+      <h3 class="thematique-nom">À compléter</h3>
+      <p class="thematique-texte">
+        <!-- MODIFIER : ajoutez votre deuxième thématique ici -->
+      </p>
+    </article>
+
+    <!-- THÉMATIQUE 3 — à compléter -->
+    <article class="thematique-carte reveler delai-2">
+      <div class="thematique-numero">03</div>
+      <h3 class="thematique-nom">À compléter</h3>
+      <p class="thematique-texte"></p>
+    </article>
+
+    <!-- THÉMATIQUE 4 — à compléter -->
+    <article class="thematique-carte reveler">
+      <div class="thematique-numero">04</div>
+      <h3 class="thematique-nom">À compléter</h3>
+      <p class="thematique-texte"></p>
+    </article>
+
+    <!-- THÉMATIQUE 5 — à compléter -->
+    <article class="thematique-carte reveler delai-1">
+      <div class="thematique-numero">05</div>
+      <h3 class="thematique-nom">À compléter</h3>
+      <p class="thematique-texte"></p>
+    </article>
+
+    <!-- THÉMATIQUE 6 — à compléter -->
+    <article class="thematique-carte reveler delai-2">
+      <div class="thematique-numero">06</div>
+      <h3 class="thematique-nom">À compléter</h3>
+      <p class="thematique-texte"></p>
+    </article>
+
+  </div>
+</div><!-- fin #section-thematiques -->
+
+
 <!-- ============================================================
    JAVASCRIPT
    Tout le comportement interactif du site
@@ -1099,6 +1210,59 @@ document.querySelectorAll('.carte').forEach(carte => {
   });
 });
 
+
+// VISIONNEUSE PLEIN ÉCRAN
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+document.querySelectorAll('.carte').forEach(carte => {
+  const bg = carte.querySelector('.carte-bg');
+  if (!bg) return;
+  const cls = Array.from(bg.classList).find(c => c.startsWith('bg-'));
+  if (!cls) return;
+  const style = getComputedStyle(bg).backgroundImage;
+  const match = style.match(/url\(["']?([^"')]+)["']?\)/);
+  if (!match) return;
+  carte.style.cursor = 'zoom-in';
+  carte.addEventListener('click', () => {
+    lightboxImg.src = match[1];
+    lightbox.classList.add('actif');
+  });
+});
+
+lightbox.addEventListener('click', () => lightbox.classList.remove('actif'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('actif'); });
+
 </script>
+
+<!-- VISIONNEUSE -->
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<style>
+#lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(26,20,16,0.96);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+  cursor: zoom-out;
+}
+#lightbox.actif {
+  opacity: 1; pointer-events: all;
+}
+#lightbox img {
+  max-width: 92vw; max-height: 92vh;
+  object-fit: contain;
+  transform: scale(1.06);
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+#lightbox.actif img {
+  transform: scale(1);
+}
+</style>
+
 </body>
 </html>
