@@ -561,8 +561,16 @@ background-position: center;
 }
 .chapitre-medium {
   font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(107,91,78,0.5);
+  color: rgba(107,91,78,0.5); margin-bottom: 28px;
 }
+.chapitre-entrer {
+  display: inline-block; font-size: 9px; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--sienna);
+  border-bottom: 1px solid var(--sienna); padding-bottom: 2px;
+  cursor: pointer; transition: opacity 0.3s;
+}
+.chapitre-entrer:hover { opacity: 0.6; }
+.chapitre[data-galerie] { cursor: default; }
 .apropos-mots {
   display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
 }
@@ -803,7 +811,7 @@ footer {
     </div>
 
     <!-- CHAPITRE I -->
-    <div class="chapitre">
+    <div class="chapitre" data-galerie="images/narthex.jpeg" data-titre="Narthex">
       <div class="chapitre-visuel bg-narthex"></div>
       <div class="chapitre-corps">
         <div class="chapitre-num">I</div>
@@ -812,11 +820,12 @@ footer {
         <p class="chapitre-definition">« Étymologiquement, suggère l'idée de seuil, de franchissement. »</p>
         <p class="chapitre-texte">Capturer les lieux — charmer la souche pour en prendre l'empreinte, archiver la rencontre. L'impression photographique comme geste d'archive : ce qui a eu lieu reste, fixé dans la matière.</p>
         <div class="chapitre-medium">Impression pigmentaire · 160×240 cm · Open School ESBANM, 2022</div>
+        <span class="chapitre-entrer">Entrer →</span>
       </div>
     </div>
 
     <!-- CHAPITRE II -->
-    <div class="chapitre chapitre-inverse">
+    <div class="chapitre chapitre-inverse" data-galerie="images/dome.jpeg" data-titre="Boden">
       <div class="chapitre-visuel" style="background-image:url('images/dome.jpeg');background-size:cover;background-position:center;"></div>
       <div class="chapitre-corps">
         <div class="chapitre-num">II</div>
@@ -825,11 +834,12 @@ footer {
         <p class="chapitre-definition">« Le sol — Boden — comme fondement de toute présence au monde. »</p>
         <p class="chapitre-texte">La nécessité de faire abri — avant l'architecture, avant la forme. Le toucher comme premier contact avec le monde physique : poser la main, presser, laisser une trace. La terre comme premier sol, premier corps, premier refuge.</p>
         <div class="chapitre-medium">Sculpture · Béton fibré · Installation au sol</div>
+        <span class="chapitre-entrer">Entrer →</span>
       </div>
     </div>
 
     <!-- CHAPITRE III -->
-    <div class="chapitre">
+    <div class="chapitre" data-galerie="images/aitre carbone.jpg|images/anamnese.jpeg|images/rocher.jpeg" data-titre="Aître Carbone">
       <div class="chapitre-visuel" style="background-image:url('images/aitre carbone.jpg');background-size:cover;background-position:center;"></div>
       <div class="chapitre-corps">
         <div class="chapitre-num">III</div>
@@ -838,11 +848,12 @@ footer {
         <p class="chapitre-definition">« L'intimité d'un être, son for intérieur, l'abysse même de sa pensée. »</p>
         <p class="chapitre-texte">Les grands dessins au fusain comme recherche intérieure d'un souvenir — faire remonter des formes oubliées. Le geste noir sur la toile de lin n'invente pas : il retrouve. Une anamnèse visuelle, lente, qui inscrit ce que la mémoire n'a jamais tout à fait perdu.</p>
         <div class="chapitre-medium">Fusain sec sur toile de lin · 144×177 cm · Galerie Sabrina Lucas, 2022</div>
+        <span class="chapitre-entrer">Entrer →</span>
       </div>
     </div>
 
     <!-- CHAPITRE IV -->
-    <div class="chapitre chapitre-inverse">
+    <div class="chapitre chapitre-inverse" data-galerie="images/Hinc ad Horam.jpg|images/mains-grain.jpg|images/mains.jpeg" data-titre="Hinc ad Horam">
       <div class="chapitre-visuel" style="background-image:url('images/Hinc ad Horam.jpg');background-size:cover;background-position:center;"></div>
       <div class="chapitre-corps">
         <div class="chapitre-num">IV</div>
@@ -851,11 +862,12 @@ footer {
         <p class="chapitre-definition">« D'ici jusqu'à cette heure — le temps comme matière à traverser. »</p>
         <p class="chapitre-texte">La persistance de l'image — ces « images de mémoire » qui trouvent un support dans l'air, la poussière, la cire. Les transferts sur paraffine fixent le souvenir dans une matière translucide, entre présence et disparition. Ce qui reste n'est pas une copie : c'est une survivance.</p>
         <div class="chapitre-medium">Travail sur cire & paraffine · Frottage · Empreinte</div>
+        <span class="chapitre-entrer">Entrer →</span>
       </div>
     </div>
 
     <!-- CHAPITRE V -->
-    <div class="chapitre">
+    <div class="chapitre" data-galerie="images/theatron.jpg" data-titre="Theatron">
       <div class="chapitre-visuel bg-theatron"></div>
       <div class="chapitre-corps">
         <div class="chapitre-num">V</div>
@@ -864,6 +876,7 @@ footer {
         <p class="chapitre-definition">« Le theatron grec : le lieu du voir, où le corps entier devient regard. »</p>
         <p class="chapitre-texte">L'expérience du temps et du regard — où se situe le corps qui observe ? La sculpture comme lieu de la perception.</p>
         <div class="chapitre-medium">Sculptures béton fibré · Laboratoire Arronax · 2022</div>
+        <span class="chapitre-entrer">Entrer →</span>
       </div>
     </div>
 
@@ -1318,7 +1331,55 @@ document.querySelectorAll('.carte').forEach(carte => {
 lightbox.addEventListener('click', () => lightbox.classList.remove('actif'));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('actif'); });
 
+// GALERIE CHAPITRES
+const galerie = document.getElementById('galerie');
+const galerieImg = document.getElementById('galerie-img');
+const galerieTitre = document.getElementById('galerie-titre');
+const galerieCompteur = document.getElementById('galerie-compteur');
+let galerieImages = [], galerieIndex = 0;
+
+function ouvrirGalerie(images, titre, index) {
+  galerieImages = images;
+  galerieIndex = index;
+  galerieTitre.textContent = titre;
+  galerieImg.src = galerieImages[galerieIndex];
+  galerieCompteur.textContent = (galerieIndex + 1) + ' / ' + galerieImages.length;
+  galerie.classList.add('actif');
+}
+function galerieSuivant() { galerieIndex = (galerieIndex + 1) % galerieImages.length; galerieImg.src = galerieImages[galerieIndex]; galerieCompteur.textContent = (galerieIndex + 1) + ' / ' + galerieImages.length; }
+function galeriePrecedent() { galerieIndex = (galerieIndex - 1 + galerieImages.length) % galerieImages.length; galerieImg.src = galerieImages[galerieIndex]; galerieCompteur.textContent = (galerieIndex + 1) + ' / ' + galerieImages.length; }
+
+document.querySelectorAll('.chapitre[data-galerie]').forEach(ch => {
+  ch.querySelector('.chapitre-entrer').addEventListener('click', e => {
+    e.stopPropagation();
+    const imgs = ch.dataset.galerie.split('|');
+    ouvrirGalerie(imgs, ch.dataset.titre, 0);
+  });
+});
+
+document.getElementById('galerie-fermer').addEventListener('click', () => galerie.classList.remove('actif'));
+document.getElementById('galerie-suivant').addEventListener('click', galerieSuivant);
+document.getElementById('galerie-precedent').addEventListener('click', galeriePrecedent);
+document.addEventListener('keydown', e => {
+  if (!galerie.classList.contains('actif')) return;
+  if (e.key === 'Escape') galerie.classList.remove('actif');
+  if (e.key === 'ArrowRight') galerieSuivant();
+  if (e.key === 'ArrowLeft') galeriePrecedent();
+});
+
 </script>
+
+<!-- GALERIE CHAPITRES -->
+<div id="galerie">
+  <button id="galerie-fermer">✕</button>
+  <button id="galerie-precedent">‹</button>
+  <button id="galerie-suivant">›</button>
+  <img id="galerie-img" src="" alt="">
+  <div id="galerie-bas">
+    <span id="galerie-titre"></span>
+    <span id="galerie-compteur"></span>
+  </div>
+</div>
 
 <!-- VISIONNEUSE -->
 <div id="lightbox">
@@ -1326,6 +1387,43 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.cla
 </div>
 
 <style>
+#galerie {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(26,20,16,0.97);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+#galerie.actif { opacity: 1; pointer-events: all; }
+#galerie img {
+  max-width: 80vw; max-height: 85vh; object-fit: contain;
+  transition: opacity 0.3s;
+}
+#galerie-fermer {
+  position: absolute; top: 28px; right: 36px;
+  background: none; border: none; color: rgba(250,247,242,0.5);
+  font-size: 22px; cursor: pointer; transition: color 0.3s;
+}
+#galerie-fermer:hover { color: var(--creme); }
+#galerie-precedent, #galerie-suivant {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: rgba(250,247,242,0.4);
+  font-size: 52px; cursor: pointer; transition: color 0.3s; line-height: 1;
+  padding: 20px;
+}
+#galerie-precedent { left: 20px; }
+#galerie-suivant { right: 20px; }
+#galerie-precedent:hover, #galerie-suivant:hover { color: var(--creme); }
+#galerie-bas {
+  position: absolute; bottom: 28px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 32px; align-items: baseline;
+}
+#galerie-titre {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 18px; color: rgba(250,247,242,0.7);
+}
+#galerie-compteur {
+  font-size: 10px; letter-spacing: 0.3em; color: rgba(250,247,242,0.35);
+}
 #lightbox {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(26,20,16,0.96);
