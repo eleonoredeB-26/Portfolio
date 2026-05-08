@@ -387,8 +387,8 @@ background-position: center;
   background: linear-gradient(145deg, #3A3020 0%, #6A5840 40%, #8A7858 70%, #2A2018 100%);
 }
 .bg-arronax {
-  /* === REMPLACEZ : photo ART'ONAX exposition === */
-  background: linear-gradient(140deg, #282820 0%, #484840 40%, #686858 70%, #181810 100%);
+  background-image: url('images/theatron.jpg');
+  background-size: cover; background-position: center;
 }
 .bg-architecte {
   /* === REMPLACEZ : photo assistanat architecte === */
@@ -516,6 +516,72 @@ background-position: center;
 .memoire-refs {
   margin-top: 28px; font-size: 11px; font-style: italic;
   color: rgba(250,247,242,0.3); letter-spacing: 0.08em; line-height: 1.9;
+}
+
+/* ============================================================
+   CHAPITRES UNIVERS
+============================================================ */
+.chapitres { padding: 0 0 80px; }
+.chapitre {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 560px; border-bottom: 1px solid rgba(107,91,78,0.12);
+}
+.chapitre-inverse { direction: rtl; }
+.chapitre-inverse > * { direction: ltr; }
+.chapitre-visuel { position: relative; min-height: 480px; }
+.chapitre-corps {
+  padding: 80px 72px; display: flex; flex-direction: column; justify-content: center;
+  background: var(--creme);
+}
+.chapitre-inverse .chapitre-corps { background: var(--sable); }
+.chapitre-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; font-weight: 300; color: rgba(107,91,78,0.12);
+  line-height: 1; margin-bottom: -20px;
+}
+.chapitre-titre {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 3.5vw, 52px); font-weight: 300; font-style: italic;
+  color: var(--charbon); margin-bottom: 8px;
+}
+.chapitre-accroche {
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--sienna); margin-bottom: 24px;
+}
+.chapitre-texte {
+  font-size: 13px; line-height: 2; color: var(--ombre); margin-bottom: 24px;
+}
+.chapitre-definition {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic; color: var(--sienna);
+  line-height: 1.7; margin-bottom: 20px;
+}
+.chapitre-medium {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(107,91,78,0.5);
+}
+.apropos-mots {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+}
+.apropos-mots span {
+  font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--sienna); border: 1px solid rgba(160,120,86,0.35);
+  padding: 6px 14px;
+}
+
+/* ============================================================
+   TYPOLOGIES PROJETS
+============================================================ */
+.typo-entete {
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 48px 52px 24px; border-top: 1px solid rgba(107,91,78,0.12);
+}
+.typo-num {
+  font-size: 10px; letter-spacing: 0.4em; color: var(--sienna); font-weight: 300;
+}
+.typo-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300; font-style: italic; color: var(--charbon);
 }
 
 /* ============================================================
@@ -682,18 +748,23 @@ footer {
       <!-- Ticker défilant — MODIFIER les textes -->
       <div class="hero-ticker">
         <div class="ticker-piste">
+          <span class="ticker-element">Révélatrice</span>
+          <span class="ticker-element">Seuil</span>
+          <span class="ticker-element">Présence</span>
+          <span class="ticker-element">Attention au détail</span>
           <span class="ticker-element">Dessin au fusain</span>
           <span class="ticker-element">Empreinte & frottage</span>
-          <span class="ticker-element">Photographie</span>
+          <span class="ticker-element">Photographie Fujifilm</span>
           <span class="ticker-element">Sculpture béton fibré</span>
-          <span class="ticker-element">Installation</span>
           <span class="ticker-element">Mémoire Avoir lieu</span>
-          <!-- Répétition pour le défilement continu -->
+          <span class="ticker-element">Révélatrice</span>
+          <span class="ticker-element">Seuil</span>
+          <span class="ticker-element">Présence</span>
+          <span class="ticker-element">Attention au détail</span>
           <span class="ticker-element">Dessin au fusain</span>
           <span class="ticker-element">Empreinte & frottage</span>
-          <span class="ticker-element">Photographie</span>
+          <span class="ticker-element">Photographie Fujifilm</span>
           <span class="ticker-element">Sculpture béton fibré</span>
-          <span class="ticker-element">Installation</span>
           <span class="ticker-element">Mémoire Avoir lieu</span>
         </div>
       </div>
@@ -722,73 +793,78 @@ footer {
     </p>
   </div>
 
-  <!-- GRILLE TRAVAUX PERSONNELS -->
-  <div class="travaux reveler">
+  <!-- 5 CHAPITRES DU MÉMOIRE -->
+  <div class="chapitres reveler" id="travaux">
     <div class="travaux-entete">
-      <span class="travaux-label">Œuvres & travail plastique</span>
+      <span class="travaux-label">5 chapitres · Mémoire DNSEP 2022</span>
     </div>
 
-    <div class="grille">
-
-      <!-- CARTE 1 — grande carte gauche -->
-      <!-- MODIFIER : remplacez .bg-anamnese par background-image: url('votre-image.jpg') -->
-      <div class="carte">
-        <div class="carte-bg bg-anamnese"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">Anamnese</div>
-          <!-- MODIFIER : description du projet -->
-          <div class="carte-type">Fusain sec sur toile de lin · 144×177 cm · Galerie Sabrina Lucas</div>
-        </div>
+    <!-- CHAPITRE I -->
+    <div class="chapitre">
+      <div class="chapitre-visuel bg-narthex"></div>
+      <div class="chapitre-corps">
+        <div class="chapitre-num">I</div>
+        <h3 class="chapitre-titre">Narthex</h3>
+        <p class="chapitre-accroche">Le seuil & la transition</p>
+        <p class="chapitre-definition">« Étymologiquement, suggère l'idée de seuil, de franchissement. »</p>
+        <p class="chapitre-texte">L'impression photographique comme geste de passage — ce qui précède l'entrée, ce qui retient avant d'abandonner.</p>
+        <div class="chapitre-medium">Impression pigmentaire · 160×240 cm · Open School ESBANM, 2022</div>
       </div>
+    </div>
 
-      <!-- CARTE 2 -->
-      <div class="carte">
-        <div class="carte-bg bg-narthex"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">Narthex</div>
-          <div class="carte-type">Impression pigmentaire · 160×240 cm · Open School ESBANM</div>
-        </div>
+    <!-- CHAPITRE II -->
+    <div class="chapitre chapitre-inverse">
+      <div class="chapitre-visuel" style="background-image:url('images/dome.jpeg');background-size:cover;background-position:center;"></div>
+      <div class="chapitre-corps">
+        <div class="chapitre-num">II</div>
+        <h3 class="chapitre-titre">Boden</h3>
+        <p class="chapitre-accroche">L'abri & la terre</p>
+        <p class="chapitre-definition">« Le sol — Boden — comme fondement de toute présence au monde. »</p>
+        <p class="chapitre-texte">Le geste primaire de se couvrir, de se caler dans la matière. La terre comme premier sol, premier abri, premier corps.</p>
+        <div class="chapitre-medium">Sculpture · Béton fibré · Installation au sol</div>
       </div>
+    </div>
 
-      <!-- CARTE 3 -->
-      <div class="carte">
-        <div class="carte-bg bg-theatron"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">Theatron</div>
-          <div class="carte-type">Sculptures béton fibré · Commande · Laboratoire Arronax</div>
-        </div>
+    <!-- CHAPITRE III -->
+    <div class="chapitre">
+      <div class="chapitre-visuel bg-anamnese"></div>
+      <div class="chapitre-corps">
+        <div class="chapitre-num">III</div>
+        <h3 class="chapitre-titre">Aître Carbone</h3>
+        <p class="chapitre-accroche">Le cadre & le for intérieur</p>
+        <p class="chapitre-definition">« L'intimité d'un être, son for intérieur, l'abysse même de sa pensée. »</p>
+        <p class="chapitre-texte">Le fusain comme matière du dedans — noir qui inscrit, qui rature, qui conserve. Le cadre comme espace de l'intime rendu visible.</p>
+        <div class="chapitre-medium">Fusain sec sur toile de lin · 144×177 cm · Galerie Sabrina Lucas, 2022</div>
       </div>
+    </div>
 
-      <!-- CARTE 4 -->
-      <div class="carte">
-        <div class="carte-bg bg-inframince"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">Inframince</div>
-          <div class="carte-type">Photographie · Sculpture bois de chêne · Peinture dorée</div>
-        </div>
+    <!-- CHAPITRE IV -->
+    <div class="chapitre chapitre-inverse">
+      <div class="chapitre-visuel" style="background-image:url('images/mains-grain.jpg');background-size:cover;background-position:center;"></div>
+      <div class="chapitre-corps">
+        <div class="chapitre-num">IV</div>
+        <h3 class="chapitre-titre">Hinc ad Horam</h3>
+        <p class="chapitre-accroche">La mémoire & la trace</p>
+        <p class="chapitre-definition">« D'ici jusqu'à cette heure — le temps comme matière à traverser. »</p>
+        <p class="chapitre-texte">La cire et la paraffine comme matières du temps suspendu. L'empreinte qui garde, qui fixe, qui refuse l'oubli.</p>
+        <div class="chapitre-medium">Travail sur cire & paraffine · Frottage · Empreinte</div>
       </div>
+    </div>
 
-      <!-- CARTE 5 -->
-      <div class="carte">
-        <div class="carte-bg bg-exposition-dnsep"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">Peau d'écorce</div>
-          <div class="carte-type">Peau d&rsquo;écorce</div>
-        </div>
+    <!-- CHAPITRE V -->
+    <div class="chapitre">
+      <div class="chapitre-visuel bg-theatron"></div>
+      <div class="chapitre-corps">
+        <div class="chapitre-num">V</div>
+        <h3 class="chapitre-titre">Theatron</h3>
+        <p class="chapitre-accroche">L'endroit d'où l'on voit</p>
+        <p class="chapitre-definition">« Le theatron grec : le lieu du voir, où le corps entier devient regard. »</p>
+        <p class="chapitre-texte">L'expérience du temps et du regard — où se situe le corps qui observe ? La sculpture comme lieu de la perception.</p>
+        <div class="chapitre-medium">Sculptures béton fibré · Laboratoire Arronax · 2022</div>
       </div>
+    </div>
 
-    </div><!-- fin .grille -->
-  </div><!-- fin .travaux -->
+  </div><!-- fin .chapitres -->
 
   <div class="centre reveler"><div class="ligne-deco"></div></div>
 
@@ -817,14 +893,12 @@ footer {
       <p class="apropos-tag">À propos</p>
       <h2 class="apropos-titre">Habiter<br>le monde,<br><em>faire œuvre</em></h2>
       <div class="apropos-corps">
-        <!-- MODIFIER : votre biographie -->
-        <p>Diplômée du DNSEP des Beaux-Arts de Nantes (mention qualité des réalisations),
-        je construis des univers où l'espace, le trait et la lumière portent une mémoire.
-        Formée au DNA design d'objet et espace à l'EESAB Rennes, j'ai également
-        un certificat d'initiation au DPEA scénographie.</p>
-        <p>Mon travail explore les seuils : espaces d'entre-deux où la matière devient
-        mémoire, où l'expérience intime devient œuvre partagée.
-        Publié dans la Revue Zérodeux, présenté dans le cadre du Voyage à Nantes 2022.</p>
+        <p>Artiste-Scénographe, je développe un profil à l'interface entre création, image et mise en œuvre. Scénographe dans ma manière de travailler, je mets en scène les choses — que ce soit au format d'un moodboard, d'un shooting ou d'une scène de théâtre.</p>
+        <p>Diplômée du DNSEP des Beaux-Arts de Nantes (mention qualité des réalisations), formée au DNA design d'objet et espace à l'EESAB Rennes. Mon travail explore les <em>seuils</em> : ces espaces d'entre-deux où la matière devient mémoire, où l'expérience intime devient œuvre partagée.</p>
+        <p>Publié dans la Revue Zérodeux · Voyage à Nantes 2022.</p>
+      </div>
+      <div class="apropos-mots">
+        <span>Révélatrice</span><span>Seuil</span><span>Présence</span><span>Attention au détail</span>
       </div>
       <!-- MODIFIER : lien vers votre CV -->
       <a class="apropos-cta" href="cv-eleonore-de-bussy.pdf" target="_blank">Télécharger le CV →</a>
@@ -849,7 +923,7 @@ footer {
         </div>
         <div class="fiche">
           <div class="fiche-label">Outils</div>
-          <div class="fiche-valeur">SketchUp · Suite Adobe · Fujifilm X-T10</div>
+          <div class="fiche-valeur">SketchUp · Suite Adobe · MacBook Pro · iPad Pro · Fujifilm X-T10</div>
         </div>
         <!-- MODIFIER : votre Instagram -->
         <div class="fiche">
@@ -940,37 +1014,24 @@ footer {
     </p>
   </div>
 
-  <!-- GRILLE PROJETS PROFESSIONNELS -->
-  <div class="travaux reveler">
-    <div class="travaux-entete">
-      <span class="travaux-label">Projets professionnels</span>
+  <!-- PROJETS PAR TYPOLOGIES -->
+  <div class="travaux reveler" id="travaux">
+
+    <!-- TYPOLOGIE 1 -->
+    <div class="typo-entete">
+      <span class="typo-num">01</span>
+      <span class="typo-label">Scénographie & Mise en scène</span>
     </div>
-
     <div class="grille">
-
-      <!-- CARTE 1 — grande -->
       <div class="carte">
         <div class="carte-bg bg-kandinsky"></div>
         <div class="carte-overlay"></div>
         <div class="carte-info">
           <div class="carte-annee">2023</div>
           <div class="carte-titre">Kandinsky, une vie bariolée</div>
-          <div class="carte-type">Scénographie · Décor · Costumes · Photographie</div>
+          <div class="carte-type">Scénographie · Décor · Costumes · Théâtre</div>
         </div>
       </div>
-
-      <!-- CARTE 2 -->
-      <div class="carte">
-        <div class="carte-bg bg-etttore"></div>
-        <div class="carte-overlay"></div>
-        <div class="carte-info">
-          <div class="carte-annee">2023</div>
-          <div class="carte-titre">Etttore, Paris</div>
-          <div class="carte-type">Décoration d'intérieur · Plans 3D · Suivi chantier</div>
-        </div>
-      </div>
-
-      <!-- CARTE 3 -->
       <div class="carte">
         <div class="carte-bg bg-expo-kandinsky"></div>
         <div class="carte-overlay"></div>
@@ -980,19 +1041,23 @@ footer {
           <div class="carte-type">Scénographie d'exposition · Palais épiscopal, Strasbourg</div>
         </div>
       </div>
+    </div>
 
-      <!-- CARTE 4 -->
+    <!-- TYPOLOGIE 2 -->
+    <div class="typo-entete">
+      <span class="typo-num">02</span>
+      <span class="typo-label">Architecture d'intérieur & 3D</span>
+    </div>
+    <div class="grille">
       <div class="carte">
-        <div class="carte-bg bg-arronax"></div>
+        <div class="carte-bg bg-etttore"></div>
         <div class="carte-overlay"></div>
         <div class="carte-info">
-          <div class="carte-annee">2022</div>
-          <div class="carte-titre">ART'ONAX</div>
-          <div class="carte-type">Commande sculpture · Laboratoire Arronax · Saint-Herblain</div>
+          <div class="carte-annee">2023</div>
+          <div class="carte-titre">Expérience Ettore, Paris</div>
+          <div class="carte-type">Plans techniques · Menuiseries sur mesure · Moodboards · 3D</div>
         </div>
       </div>
-
-      <!-- CARTE 5 -->
       <div class="carte">
         <div class="carte-bg bg-architecte"></div>
         <div class="carte-overlay"></div>
@@ -1002,8 +1067,25 @@ footer {
           <div class="carte-type">Architecte d'intérieur V. Lecomte · Artiste J. Minchin, Poush</div>
         </div>
       </div>
+    </div>
 
-    </div><!-- fin .grille -->
+    <!-- TYPOLOGIE 3 -->
+    <div class="typo-entete">
+      <span class="typo-num">03</span>
+      <span class="typo-label">Commandes Publiques & Design</span>
+    </div>
+    <div class="grille">
+      <div class="carte">
+        <div class="carte-bg bg-arronax"></div>
+        <div class="carte-overlay"></div>
+        <div class="carte-info">
+          <div class="carte-annee">2022</div>
+          <div class="carte-titre">ART'ONAX</div>
+          <div class="carte-type">Sculptures pérennes béton fibré · Laboratoire Arronax · Saint-Herblain</div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- fin .travaux -->
 
   <div class="centre reveler"><div class="ligne-deco"></div></div>
