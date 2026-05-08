@@ -583,6 +583,15 @@ background-position: center;
 /* ============================================================
    TYPOLOGIES PROJETS
 ============================================================ */
+.bande-images {
+  display: flex; gap: 6px; padding: 6px 0 0; overflow-x: auto;
+}
+.bande-images img {
+  height: 220px; width: auto; object-fit: cover;
+  cursor: zoom-in; flex-shrink: 0;
+  transition: opacity 0.3s;
+}
+.bande-images img:hover { opacity: 0.85; }
 .typo-entete {
   display: flex; align-items: baseline; gap: 20px;
   padding: 48px 52px 24px; border-top: 1px solid rgba(107,91,78,0.12);
@@ -1039,6 +1048,15 @@ footer {
           <div class="carte-type">Scénographie · Décor · Costumes · Mise en scène Olivier Achard</div>
         </div>
       </div>
+    </div>
+
+    <!-- BANDE D'IMAGES KANDINSKY THÉÂTRE -->
+    <div class="bande-images">
+      <img src="images/Kan-projection.jpg" alt="Kan-projection" onclick="ouvrirGalerie(['images/Kan-projection.jpg','images/Kan-femme.jpg','images/Kan-malle.jpg','images/Kan-impression.jpg','images/Kan-haut.jpg'],'Kandinsky, une vie bariolée',0)">
+      <img src="images/Kan-femme.jpg" alt="Kan-femme" onclick="ouvrirGalerie(['images/Kan-projection.jpg','images/Kan-femme.jpg','images/Kan-malle.jpg','images/Kan-impression.jpg','images/Kan-haut.jpg'],'Kandinsky, une vie bariolée',1)">
+      <img src="images/Kan-malle.jpg" alt="Kan-malle" onclick="ouvrirGalerie(['images/Kan-projection.jpg','images/Kan-femme.jpg','images/Kan-malle.jpg','images/Kan-impression.jpg','images/Kan-haut.jpg'],'Kandinsky, une vie bariolée',2)">
+      <img src="images/Kan-impression.jpg" alt="Kan-impression" onclick="ouvrirGalerie(['images/Kan-projection.jpg','images/Kan-femme.jpg','images/Kan-malle.jpg','images/Kan-impression.jpg','images/Kan-haut.jpg'],'Kandinsky, une vie bariolée',3)">
+      <img src="images/Kan-haut.jpg" alt="Kan-haut" onclick="ouvrirGalerie(['images/Kan-projection.jpg','images/Kan-femme.jpg','images/Kan-malle.jpg','images/Kan-impression.jpg','images/Kan-haut.jpg'],'Kandinsky, une vie bariolée',4)">
     </div>
 
     <!-- SCÉNOGRAPHIE D'EXPOSITION -->
