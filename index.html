@@ -354,15 +354,19 @@ background-position: center;
 background-image: url('images/anamnese.jpeg')
 }
 .bg-narthex {
-  /* === REMPLACEZ : photo Narthex (impression pigmentaire) === */
 background-image: url('images/narthex.jpeg');
-background-size: cover;
+background-size: contain;
 background-position: center;
+background-repeat: no-repeat;
+background-color: var(--creme);
 }
 .bg-theatron {
-  background-image: url('images/theatron.jpg');
-  background-size: cover;
+  background-image: url('images/theatron2.jpg');
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--creme);
+  filter: sepia(0.35);
 }
 .bg-inframince {
   /* === REMPLACEZ : photo Inframince (bois de chêne doré) === */
@@ -534,12 +538,17 @@ background-position: center;
 }
 .chapitre-inverse { direction: rtl; }
 .chapitre-inverse > * { direction: ltr; }
-.chapitre-visuel { position: relative; min-height: 480px; background-size: cover; background-position: center; }
+.chapitre-visuel { position: relative; min-height: 480px; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: var(--creme); }
 .chapitre-corps {
   padding: 80px 72px; display: flex; flex-direction: column; justify-content: center;
   background: var(--creme);
 }
 .chapitre-inverse .chapitre-corps { background: var(--sable); }
+.chapitre-label-memoire {
+  font-size: 8px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--sienna); opacity: 0.6; margin-bottom: 12px;
+  display: block;
+}
 .chapitre-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 80px; font-weight: 300; color: rgba(107,91,78,0.12);
@@ -710,6 +719,87 @@ footer {
 /* Fond sable pour certaines sections */
 .fond-sable { background: var(--sable); }
 
+/* ============================================================
+   RESPONSIVE MOBILE
+============================================================ */
+@media (max-width: 768px) {
+  nav {
+    padding: 14px 20px;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .nav-liens { gap: 16px; }
+
+  .onglets-principaux {
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr !important;
+    min-height: auto;
+  }
+  .hero-gauche {
+    padding: 100px 24px 40px;
+    min-height: auto;
+  }
+  .hero-droite {
+    min-height: 260px;
+  }
+  .hero-univers-img, .hero-projets-img {
+    max-height: 260px;
+  }
+  .hero-titre {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+
+  .chapitre {
+    grid-template-columns: 1fr !important;
+    direction: ltr !important;
+    min-height: auto;
+  }
+  .chapitre-inverse { direction: ltr; }
+  .chapitre-visuel { min-height: 260px; }
+  .chapitre-corps { padding: 40px 24px; }
+  .chapitre-num { font-size: 56px; }
+  .chapitre-titre { font-size: clamp(26px, 6vw, 38px); }
+
+  .memoire {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    padding: 40px 24px;
+  }
+
+  .projets-grille {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .thematiques-grille {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .bio-grille {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+
+  .section-interne { padding: 60px 24px; }
+
+  .travaux-entete { padding: 24px; }
+
+  .kan-bande {
+    gap: 8px;
+    padding: 0 16px 16px;
+  }
+  .kan-img { height: 180px; }
+
+  #galerie-precedent { left: 8px; }
+  #galerie-suivant { right: 8px; }
+}
+
 </style>
 </head>
 <body>
@@ -819,6 +909,7 @@ footer {
     <div class="chapitre" data-galerie="images/narthex.jpeg" data-titre="Narthex">
       <div class="chapitre-visuel bg-narthex"></div>
       <div class="chapitre-corps">
+        <span class="chapitre-label-memoire">Chapitre du mémoire</span>
         <div class="chapitre-num">I</div>
         <h3 class="chapitre-titre">Narthex</h3>
         <p class="chapitre-accroche">L'Empreinte & l'Archive</p>
@@ -830,9 +921,10 @@ footer {
     </div>
 
     <!-- CHAPITRE II -->
-    <div class="chapitre chapitre-inverse" data-galerie="images/boden0.png|images/boden1.png|images/boden2.png|images/boden3.png" data-titre="Boden">
-      <div class="chapitre-visuel" style="background-image:url('images/boden0.png');background-size:cover;background-position:center;"></div>
+    <div class="chapitre chapitre-inverse" data-galerie="images/boden-dome.jpeg|images/boden0.png|images/boden1.png|images/boden2.png|images/boden3.png" data-titre="Boden">
+      <div class="chapitre-visuel" style="background-image:url('images/boden-dome.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--creme);"></div>
       <div class="chapitre-corps">
+        <span class="chapitre-label-memoire">Chapitre du mémoire</span>
         <div class="chapitre-num">II</div>
         <h3 class="chapitre-titre">Boden</h3>
         <p class="chapitre-accroche">L'Abri & le Geste Primaire</p>
@@ -845,8 +937,9 @@ footer {
 
     <!-- CHAPITRE III -->
     <div class="chapitre" data-galerie="images/aitre carbone1.jpg|images/aitre carbone2.jpg|images/aitre carbone3.jpg" data-titre="Aître Carbone">
-      <div class="chapitre-visuel" style="background-image:url('images/anamnese.jpeg');background-size:cover;background-position:center;"></div>
+      <div class="chapitre-visuel" style="background-image:url('images/anamnese.jpeg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--creme);"></div>
       <div class="chapitre-corps">
+        <span class="chapitre-label-memoire">Chapitre du mémoire</span>
         <div class="chapitre-num">III</div>
         <h3 class="chapitre-titre">Aître Carbone</h3>
         <p class="chapitre-accroche">L'Anamnèse</p>
@@ -859,8 +952,9 @@ footer {
 
     <!-- CHAPITRE IV -->
     <div class="chapitre chapitre-inverse" data-galerie="images/hinc-ad-horam.jpg|images/mains-grain.jpg|images/mains.jpeg|images/rocher.jpeg" data-titre="Hinc ad Horam">
-      <div class="chapitre-visuel" style="background-image:url('images/hinc-ad-horam.jpg');background-size:cover;background-position:center;"></div>
+      <div class="chapitre-visuel" style="background-image:url('images/hinc-ad-horam.jpg');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--creme);"></div>
       <div class="chapitre-corps">
+        <span class="chapitre-label-memoire">Chapitre du mémoire</span>
         <div class="chapitre-num">IV</div>
         <h3 class="chapitre-titre">Hinc ad Horam</h3>
         <p class="chapitre-accroche">La Mémoire</p>
@@ -875,6 +969,7 @@ footer {
     <div class="chapitre" data-galerie="images/theatron.jpg" data-titre="Theatron">
       <div class="chapitre-visuel bg-theatron"></div>
       <div class="chapitre-corps">
+        <span class="chapitre-label-memoire">Chapitre du mémoire</span>
         <div class="chapitre-num">V</div>
         <h3 class="chapitre-titre">Theatron</h3>
         <p class="chapitre-accroche">L'endroit d'où l'on voit</p>
